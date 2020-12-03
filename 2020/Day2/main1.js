@@ -1,25 +1,20 @@
 function validPasswords(input) {
     const inputArr = input.split('\n');
 
-    let valid = 0;
-    for (var i = 0; i < inputArr.length; i++) {
-        var row = inputArr[i].split(':');
-        var policy = row[0].split('-');
-        var min = policy[0];
-        var max = policy[1].split(' ')[0];
-        var char = policy[1].split(' ')[1];
-        var pwd = row[1];
+    let validPwds = 0;
+    for (let i = 0; i < inputArr.length; i++) {
+        const [range, charToMatch, pwd] = inputArr[i].split(' ');
+        const [minPolicy, maxPolicy] = range.split('-');
 
-        var regEx = new RegExp(char, 'gi');
-        var match = pwd.match(regEx);
-        var noOfOcc = match && match.length;
-        if (noOfOcc >= min && noOfOcc <= max) {
-            valid++;
+        const regEx = new RegExp(charToMatch[0], 'gi');
+        const match = pwd.match(regEx);
+        const noOfOcc = match && match.length;
+        if (noOfOcc >= minPolicy && noOfOcc <= maxPolicy) {
+            validPwds++;
         }
     }
-    console.log(`Valid Passwords: ${valid}`);
+    console.log(`Valid Passwords: ${validPwds}`);
 }
 
 var sampleInput = require('./input');
-
 validPasswords(sampleInput);

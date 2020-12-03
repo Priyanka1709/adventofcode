@@ -23,5 +23,4 @@ function sum2020(input, targetSum) {
 }
 
 var sampleInput = require('./input');
-
 sum2020(sampleInput, 2020);
